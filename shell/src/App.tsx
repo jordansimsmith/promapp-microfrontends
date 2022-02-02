@@ -12,28 +12,36 @@ const Home = (): JSX.Element => {
 const App = (): JSX.Element => {
   return (
     <BrowserRouter>
-      <header>
-        <h1>Shell app</h1>
-      </header>
+      <div style={{ background: "yellow" }}>
+        <header>
+          <h1>Shell app</h1>
+        </header>
 
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/process">Process</Link>
-      </nav>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/process">Process</Link>
+            </li>
+          </ul>
+        </nav>
 
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="process"
-            element={
-              <RemoteComponent
-                loadRemoteModule={() => import("process/bootstrap")}
-              />
-            }
-          />
-        </Routes>
-      </main>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="process"
+              element={
+                <RemoteComponent
+                  loadRemoteModule={() => import("process/bootstrap")}
+                />
+              }
+            />
+          </Routes>
+        </main>
+      </div>
     </BrowserRouter>
   );
 };
