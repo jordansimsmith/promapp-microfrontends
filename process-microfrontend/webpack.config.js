@@ -38,10 +38,10 @@ module.exports = {
         "./bootstrap": "./src/bootstrap",
       },
       shared: {
-        react: { eager: false, requiredVersion: package.devDependencies.react },
+        react: { eager: false, requiredVersion: package.dependencies.react },
         "react-dom": {
           eager: false,
-          requiredVersion: package.devDependencies["react-dom"],
+          requiredVersion: package.dependencies["react-dom"],
         },
       },
     }),

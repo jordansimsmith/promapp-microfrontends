@@ -1,7 +1,7 @@
 const App = (): JSX.Element => {
   return (
     <div>
-      <h1>Process microfrontend app</h1>
+      <h2>Process microfrontend app</h2>
     </div>
   );
 };

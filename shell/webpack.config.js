@@ -41,10 +41,10 @@ module.exports = {
         process: "process@http://localhost:3001/remoteEntry.js",
       },
       shared: {
-        react: { eager: false, requiredVersion: package.devDependencies.react },
+        react: { eager: false, requiredVersion: package.dependencies.react },
         "react-dom": {
           eager: false,
-          requiredVersion: package.devDependencies["react-dom"],
+          requiredVersion: package.dependencies["react-dom"],
         },
       },
     }),
