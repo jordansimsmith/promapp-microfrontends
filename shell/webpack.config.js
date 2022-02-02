@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ModuleFederationPlugin =
+  require("webpack").container.ModuleFederationPlugin;
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -16,6 +18,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "build"),
     },
+    port: 3000,
   },
   module: {
     rules: [
@@ -31,6 +34,12 @@ module.exports = {
     ],
   },
   plugins: [
+    new ModuleFederationPlugin({
+      name: "shell",
+      remotes: {
+        process: "process@http://localhost:3001/remoteEntry.js",
+      },
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src", "index.html"),
     }),
