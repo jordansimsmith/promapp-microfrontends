@@ -2,9 +2,10 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin =
   require("webpack").container.ModuleFederationPlugin;
+const package = require("./package.json");
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: "./src/index.ts",
   output: {
     path: path.join(__dirname, "build"),
     filename: "index.bundle.js",
@@ -38,6 +39,13 @@ module.exports = {
       name: "shell",
       remotes: {
         process: "process@http://localhost:3001/remoteEntry.js",
+      },
+      shared: {
+        react: { eager: false, requiredVersion: package.devDependencies.react },
+        "react-dom": {
+          eager: false,
+          requiredVersion: package.devDependencies["react-dom"],
+        },
       },
     }),
     new HtmlWebpackPlugin({
