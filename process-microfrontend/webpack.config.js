@@ -35,7 +35,7 @@ module.exports = {
       name: "process",
       filename: "remoteEntry.js",
       exposes: {
-        "./App": "./src/App",
+        "./bootstrap": "./src/bootstrap",
       },
       shared: {
         react: { eager: false, requiredVersion: package.devDependencies.react },

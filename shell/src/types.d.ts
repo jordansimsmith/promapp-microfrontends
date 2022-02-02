@@ -1,7 +1,6 @@
 /// <reference types="react" />
 
-declare module "process/App" {
-  const App: React.ComponentType;
-
-  export default App;
+declare module "process/bootstrap" {
+  export const mount: (root: Element) => void;
+  export const unmount: (root: Element) => void;
 }

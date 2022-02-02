@@ -2,9 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("process-microfrontend-root")
-);
+export function mount(root: Element) {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    root
+  );
+}
+
+export function unmount(root: Element) {
+  ReactDOM.unmountComponentAtNode(root);
+}

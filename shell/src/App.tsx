@@ -1,15 +1,11 @@
-import React from "react";
-
-const ProcessMicrofrontendApp = React.lazy(() => import("process/App"));
+import RemoteComponent from "./RemoteComponent";
 
 const App = (): JSX.Element => {
   return (
     <div>
       <h1>Shell app</h1>
 
-      <React.Suspense fallback="Loading process microfrontend">
-        <ProcessMicrofrontendApp />
-      </React.Suspense>
+      <RemoteComponent loadRemoteModule={() => import("process/bootstrap")} />
     </div>
   );
 };
