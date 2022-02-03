@@ -18,6 +18,7 @@ module.exports = {
   devServer: {
     static: {
       directory: path.join(__dirname, "build"),
+      publicPath: "/",
     },
     port: 3000,
     historyApiFallback: true,
@@ -52,6 +53,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src", "index.html"),
+      publicPath: "/",
     }),
   ],
 };

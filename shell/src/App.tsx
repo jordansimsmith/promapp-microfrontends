@@ -1,6 +1,14 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import RemoteComponent from "./RemoteComponent";
 
+const NotFound = (): JSX.Element => {
+  return (
+    <div>
+      <p>Not found</p>
+    </div>
+  );
+};
+
 const App = (): JSX.Element => {
   return (
     <BrowserRouter basename="/">
@@ -31,7 +39,7 @@ const App = (): JSX.Element => {
             }
           />
           <Route
-            path="/process"
+            path="/process/*"
             element={
               <RemoteComponent
                 loadRemoteModule={() => import("process/bootstrap")}
@@ -39,6 +47,7 @@ const App = (): JSX.Element => {
               />
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </BrowserRouter>
