@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "webpack serve",
     "build": "webpack --mode=production",
+    "start": "npm run build && serve build/ -p 3000 -s",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,6 +26,7 @@
     "html-webpack-plugin": "^5.5.0",
     "sass": "^1.49.7",
     "sass-loader": "^12.4.0",
+    "serve": "^13.0.2",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.2.6",
     "typescript": "^4.5.5",
