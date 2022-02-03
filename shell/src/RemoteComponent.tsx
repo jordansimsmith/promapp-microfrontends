@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuthContext } from "./AuthContext";
 
 interface RemoteComponentProps {
   loadRemoteModule: () => Promise<any>;
@@ -9,6 +10,7 @@ const RemoteComponent = ({
 }: RemoteComponentProps): JSX.Element => {
   const [remote, setRemote] = React.useState<any>();
   const root = React.useRef<HTMLDivElement>(null);
+  const { user, accessToken } = useAuthContext();
 
   // load the remote module
   React.useEffect(() => {
@@ -23,7 +25,7 @@ const RemoteComponent = ({
       return;
     }
 
-    remote.mount(root.current);
+    remote.mount(root.current, user, accessToken);
 
     return () => remote?.unmount(root.current);
   }, [remote]);
