@@ -20,6 +20,7 @@ module.exports = {
       directory: path.join(__dirname, "build"),
     },
     port: 3001,
+    historyApiFallback: true,
   },
   module: {
     rules: [
