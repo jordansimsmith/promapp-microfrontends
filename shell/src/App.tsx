@@ -1,55 +1,13 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import RemoteComponent from "./RemoteComponent";
-
-const NotFound = (): JSX.Element => {
-  return (
-    <div>
-      <p>Not found</p>
-    </div>
-  );
-};
+import { AppRouter } from "./AppRouter";
+import { AuthContextProvider } from "./AuthContext";
 
 const App = (): JSX.Element => {
   return (
     <BrowserRouter basename="/">
-      <header style={{ background: "yellow" }}>
-        <h1>Shell app</h1>
-
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/process">Process</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
-
-      <main>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <RemoteComponent
-                loadRemoteModule={() => import("home/bootstrap")}
-                key="home-microfrontend"
-              />
-            }
-          />
-          <Route
-            path="/process/*"
-            element={
-              <RemoteComponent
-                loadRemoteModule={() => import("process/bootstrap")}
-                key="process-microfrontend"
-              />
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
+      <AuthContextProvider>
+        <AppRouter />
+      </AuthContextProvider>
     </BrowserRouter>
   );
 };
