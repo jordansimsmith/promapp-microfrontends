@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useAuthContext } from "./AuthContext";
 
 export const Header = (): JSX.Element => {
+  const { user, logout } = useAuthContext();
+
   return (
     <header style={{ background: "yellow" }}>
       <h1>Shell app</h1>
@@ -15,6 +18,11 @@ export const Header = (): JSX.Element => {
           </li>
         </ul>
       </nav>
+
+      <p>Hello {user?.name}</p>
+      <button type="button" onClick={logout}>
+        Logout
+      </button>
     </header>
   );
 };
