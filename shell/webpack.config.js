@@ -39,6 +39,7 @@ module.exports = {
       name: "shell",
       remotes: {
         process: "process@http://localhost:3001/remoteEntry.js",
+        home: "home@http://localhost:3002/remoteEntry.js",
       },
       shared: {
         react: { eager: false, requiredVersion: package.dependencies.react },

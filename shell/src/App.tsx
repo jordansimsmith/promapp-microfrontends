@@ -1,21 +1,11 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import RemoteComponent from "./RemoteComponent";
 
-const Home = (): JSX.Element => {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-};
-
 const App = (): JSX.Element => {
   return (
-    <BrowserRouter>
-      <div style={{ background: "yellow" }}>
-        <header>
-          <h1>Shell app</h1>
-        </header>
+    <BrowserRouter basename="/">
+      <header style={{ background: "yellow" }}>
+        <h1>Shell app</h1>
 
         <nav>
           <ul>
@@ -27,21 +17,30 @@ const App = (): JSX.Element => {
             </li>
           </ul>
         </nav>
+      </header>
 
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="process"
-              element={
-                <RemoteComponent
-                  loadRemoteModule={() => import("process/bootstrap")}
-                />
-              }
-            />
-          </Routes>
-        </main>
-      </div>
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <RemoteComponent
+                loadRemoteModule={() => import("home/bootstrap")}
+                key="home-microfrontend"
+              />
+            }
+          />
+          <Route
+            path="/process"
+            element={
+              <RemoteComponent
+                loadRemoteModule={() => import("process/bootstrap")}
+                key="process-microfrontend"
+              />
+            }
+          />
+        </Routes>
+      </main>
     </BrowserRouter>
   );
 };

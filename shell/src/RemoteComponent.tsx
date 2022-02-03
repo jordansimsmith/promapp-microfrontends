@@ -17,26 +17,20 @@ const RemoteComponent = ({
     });
   }, []);
 
-  // render the remote module
-  React.useEffect(() => {
+  // mount and unmount the remote module
+  React.useLayoutEffect(() => {
     if (!root.current || !remote) {
       return;
     }
 
     remote.mount(root.current);
+
+    return () => remote?.unmount(root.current);
   }, [remote]);
-
-  // unmount the remote module
-  React.useEffect(() => {
-    return () => {
-      remote?.unmount(root.current);
-    };
-  }, []);
-
-  React.useEffect(() => {}, [remote]);
 
   return <div ref={root}></div>;
 };
 
 // never re-render this component
-export default React.memo(RemoteComponent, () => true);
+// export default React.memo(RemoteComponent, () => true);
+export default RemoteComponent;

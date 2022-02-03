@@ -2,7 +2,7 @@
   "name": "shell",
   "version": "1.0.0",
   "description": "Shell application for promapp microfrontends",
-  "main": "index.js",
+  "main": "build/index.bundle.js",
   "scripts": {
     "dev": "webpack serve",
     "build": "webpack --mode=production",
