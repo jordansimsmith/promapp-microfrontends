@@ -1,8 +1,11 @@
 import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthContext } from "./AuthContext";
 
 export const LoginPage = (): JSX.Element => {
   const { login } = useAuthContext();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [loading, setLoading] = React.useState<boolean>(false);
 
@@ -20,6 +23,9 @@ export const LoginPage = (): JSX.Element => {
         },
         "my access token"
       );
+      navigate((location.state as any)?.from || "/", {
+        replace: true,
+      });
     }, 1000);
   };
 

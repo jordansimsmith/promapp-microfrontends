@@ -3,18 +3,15 @@ import { useAuthContext } from "./AuthContext";
 import { Header } from "./Header";
 import { LoginPage } from "./LoginPage";
 import { NotFound } from "./NotFound";
+import { ProtectedRoute } from "./ProtectedRoute";
 import RemoteComponent from "./RemoteComponent";
 
 export const AppRouter = (): JSX.Element => {
   const { user } = useAuthContext();
 
-  if (!user) {
-    return <LoginPage />;
-  }
-
   return (
     <>
-      <Header />
+      {user && <Header />}
 
       <main>
         <Routes>
@@ -22,19 +19,23 @@ export const AppRouter = (): JSX.Element => {
           <Route
             path="/"
             element={
-              <RemoteComponent
-                loadRemoteModule={() => import("home/bootstrap")}
-                key="home-microfrontend"
-              />
+              <ProtectedRoute>
+                <RemoteComponent
+                  loadRemoteModule={() => import("home/bootstrap")}
+                  key="home-microfrontend"
+                />
+              </ProtectedRoute>
             }
           />
           <Route
             path="/process/*"
             element={
-              <RemoteComponent
-                loadRemoteModule={() => import("process/bootstrap")}
-                key="process-microfrontend"
-              />
+              <ProtectedRoute>
+                <RemoteComponent
+                  loadRemoteModule={() => import("process/bootstrap")}
+                  key="process-microfrontend"
+                />
+              </ProtectedRoute>
             }
           />
           <Route path="*" element={<NotFound />} />
