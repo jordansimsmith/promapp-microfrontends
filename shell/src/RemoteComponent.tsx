@@ -32,5 +32,4 @@ const RemoteComponent = ({
 };
 
 // never re-render this component
-// export default React.memo(RemoteComponent, () => true);
-export default RemoteComponent;
+export default React.memo(RemoteComponent, () => true);
