@@ -1,4 +1,7 @@
 <script>
+  export let user;
+  export let accessToken;
+
   async function getRecentlyViewedProcesses() {
     return await new Promise((resolve) => {
       const processes = [
@@ -20,7 +23,7 @@
         },
       ];
 
-      setTimeout(() => resolve(processes), 1000);
+      setTimeout(() => resolve(processes), 2000);
     });
   }
 
@@ -31,10 +34,10 @@
   <h2>Home</h2>
 
   <div class="recently-viewed-container">
-    <h3>Recently viewed</h3>
+    <h3>Recently viewed for {user.name}</h3>
 
     {#await recentlyViewedProcesses}
-      <p>Loading...</p>
+      <p>Loading... using access token: '{accessToken}'</p>
     {:then processes}
       {#each processes as process}
         <li>
