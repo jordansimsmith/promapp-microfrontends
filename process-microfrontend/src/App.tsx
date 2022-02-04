@@ -1,32 +1,7 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { UserContextProvider, useUserContext } from "./UserContext";
-
-const Home = (): JSX.Element => {
-  const { user } = useUserContext();
-
-  return (
-    <div>
-      <h2>Process home</h2>
-      <p>Hello {user.name}</p>
-    </div>
-  );
-};
-
-const Page1 = (): JSX.Element => {
-  return (
-    <div>
-      <h2>Process page 1</h2>
-    </div>
-  );
-};
-
-const Page2 = (): JSX.Element => {
-  return (
-    <div>
-      <h2>Process page 2</h2>
-    </div>
-  );
-};
+import { HomePage } from "./HomePage";
+import { ProcessPage } from "./ProcessPage";
+import { UserContextProvider } from "./UserContext";
 
 interface AppProps {
   user: IUser;
@@ -43,19 +18,12 @@ const App = ({ user, accessToken }: AppProps): JSX.Element => {
               <li>
                 <Link to="/">Process home</Link>
               </li>
-              <li>
-                <Link to="/page1">Process page 1</Link>
-              </li>
-              <li>
-                <Link to="/page2">Process page 2</Link>
-              </li>
             </ul>
           </nav>
 
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/page1" element={<Page1 />} />
-            <Route path="/page2" element={<Page2 />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/:processId" element={<ProcessPage />} />
           </Routes>
         </div>
       </BrowserRouter>
