@@ -4,7 +4,7 @@
   "description": "Service to store the registration information about microfrontends",
   "main": "index.js",
   "scripts": {
-    "start": "serve public/ -p 3001",
+    "start": "serve public/ -p 3001 --cors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jordan Sim-Smith",

@@ -1,10 +1,11 @@
 import { createRoot, Root } from "react-dom/client";
+import { App } from "./App";
 
 let root: Root;
 
 export function mount(container: Element) {
   root = createRoot(container);
-  root.render(<h1>Shell</h1>);
+  root.render(<App />);
 }
 
 export function unmount() {
