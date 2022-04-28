@@ -2,6 +2,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { RemoteComponent } from "./RemoteComponent";
 import { useMicrofrontendRegistration } from "./useMicrofrontendRegistration";
 
+// TODO: basename should come from host config
+const isMountedInPromapp = window.location.href.includes("dev.promapp.com/paw");
+const basename = isMountedInPromapp ? "/paw/app" : "/";
+
 export const App = (): JSX.Element => {
   const { registration } = useMicrofrontendRegistration();
 
@@ -17,7 +21,7 @@ export const App = (): JSX.Element => {
     <div>
       <h1>Shell</h1>
       <pre>{JSON.stringify(registration, null, 2)}</pre>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <Routes>
           {registration.map((r) => (
             <Route

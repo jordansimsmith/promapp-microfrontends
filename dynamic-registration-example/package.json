@@ -7,6 +7,6 @@
     "start": "lerna run --parallel --stream start"
   },
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "lerna": "^3.22.1"
   }
 }
