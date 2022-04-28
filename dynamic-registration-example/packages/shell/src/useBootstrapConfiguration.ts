@@ -27,8 +27,23 @@ export const useBootstrapConfiguration = (
           return;
         }
 
-        // TODO: use regex and replace the templates with params
-        const formattedRoute = route;
+        // substitute the {{parameters}} from the route string with the provided params
+        let formattedRoute = route;
+        const templates = [...route.matchAll(/{{([^{}]+)}}/g)];
+        templates.forEach((t) => {
+          const templateName = t[1];
+          const templateWithBrackets = t[0];
+
+          // no substitute found, skip
+          if (!params[templateName]) {
+            return;
+          }
+
+          formattedRoute = formattedRoute.replaceAll(
+            templateWithBrackets,
+            params[templateName].toString()
+          );
+        });
 
         console.log("navigating to formatted route", formattedRoute);
 

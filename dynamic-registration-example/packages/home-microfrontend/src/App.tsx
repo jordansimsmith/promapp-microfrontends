@@ -5,7 +5,6 @@ export const App = (): JSX.Element => {
   return (
     <div>
       <h2>Home microfrontend</h2>
-
       <a
         href="#"
         onClick={(e) => {
@@ -14,6 +13,17 @@ export const App = (): JSX.Element => {
         }}
       >
         Process home
+      </a>{" "}
+      <a
+        href="#"
+        onClick={(e) => {
+          e.preventDefault();
+          navigation.navigate("PROCESS_SINGLE_VIEW", {
+            processUniqueId: "123",
+          });
+        }}
+      >
+        Process 123
       </a>
     </div>
   );
