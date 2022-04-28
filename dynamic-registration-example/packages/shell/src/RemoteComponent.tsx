@@ -1,19 +1,25 @@
 import React from "react";
 import { useDynamicScript } from "./useDynamicScript";
 import { MicrofrontendRegistration } from "./useMicrofrontendRegistration";
+import { IBootstrap } from "common";
+import { useBootstrapConfiguration } from "./useBootstrapConfiguration";
 
 type RemoteComponentProps = {
   registration: MicrofrontendRegistration;
+  registeredRoutes: Record<string, string>;
 };
 
 const InternalRemoteComponent = ({
   registration,
+  registeredRoutes,
 }: RemoteComponentProps): JSX.Element => {
   // load the remote script
   const { ready, failed } = useDynamicScript(registration.url);
 
-  const [remote, setRemote] = React.useState<any>();
+  const [remote, setRemote] = React.useState<IBootstrap>();
   const root = React.useRef<HTMLDivElement>(null);
+
+  const bootstrapConfiguration = useBootstrapConfiguration(registeredRoutes);
 
   // load the remote module
   React.useEffect(() => {
@@ -45,13 +51,13 @@ const InternalRemoteComponent = ({
       return;
     }
 
-    remote.mount(currentRoot);
+    remote.mount(currentRoot, bootstrapConfiguration);
 
     return () => remote?.unmount(currentRoot);
   }, [remote]);
 
   if (!ready) {
-    return <h2>Loading dynamic script: {registration.url}</h2>;
+    return <p>Loading dynamic script: {registration.url}</p>;
   }
 
   if (failed) {

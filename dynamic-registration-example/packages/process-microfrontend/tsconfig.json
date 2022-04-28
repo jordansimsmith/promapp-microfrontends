@@ -13,7 +13,10 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "noEmit": false,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "common": ["../common"]
+    }
   },
   "include": ["src"]
 }

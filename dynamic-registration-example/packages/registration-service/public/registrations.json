@@ -4,13 +4,20 @@
     "path": "/",
     "url": "http://localhost:3002/remoteEntry.js",
     "scope": "home",
-    "module": "./bootstrap"
+    "module": "./bootstrap",
+    "routes": {
+      "HOME": "/"
+    }
   },
   {
     "name": "process",
     "path": "/process",
     "url": "http://localhost:3003/remoteEntry.js",
     "scope": "process",
-    "module": "./bootstrap"
+    "module": "./bootstrap",
+    "routes": {
+      "PROCESS_HOME": "/process",
+      "PROCESS_SINGLE_VIEW": "/process/{{processUniqueId}}"
+    }
   }
 ]

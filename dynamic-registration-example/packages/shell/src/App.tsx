@@ -9,6 +9,10 @@ export const App = (): JSX.Element => {
     return <></>;
   }
 
+  const registeredRoutes = registration
+    .map((r) => r.routes)
+    .reduce((prev, curr) => ({ ...prev, ...curr }), {});
+
   return (
     <div>
       <h1>Shell</h1>
@@ -18,7 +22,13 @@ export const App = (): JSX.Element => {
           {registration.map((r) => (
             <Route
               path={r.path}
-              element={<RemoteComponent registration={r} />}
+              element={
+                <RemoteComponent
+                  registration={r}
+                  registeredRoutes={registeredRoutes}
+                  key={r.name}
+                />
+              }
               key={r.name}
             />
           ))}

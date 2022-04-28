@@ -1,12 +1,18 @@
 import { createRoot, Root } from "react-dom/client";
+import { BoostrapConfigurationProvider, IBootstrap } from "common";
+import { App } from "./App";
 
 let root: Root;
 
-export function mount(container: Element) {
+export const mount: IBootstrap["mount"] = (container, config) => {
   root = createRoot(container);
-  root.render(<h1>Process microfrontend</h1>);
-}
+  root.render(
+    <BoostrapConfigurationProvider value={config}>
+      <App />
+    </BoostrapConfigurationProvider>
+  );
+};
 
-export function unmount() {
+export const unmount: IBootstrap["unmount"] = () => {
   root?.unmount();
-}
+};

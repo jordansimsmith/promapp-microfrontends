@@ -1,6 +1,19 @@
 import("./bootstrap").then(({ mount }) => {
   const root = document.getElementById("process-microfrontend-root");
   if (root) {
-    mount(root);
+    mount(root, {
+      identity: {
+        getToken: async () => "",
+      },
+      localisation: {
+        lang: "en",
+      },
+      navigation: {
+        navigate: () => null,
+      },
+      services: {
+        getUrl: async () => "",
+      },
+    });
   }
 });
