@@ -1,4 +1,4 @@
-# promapp-microfrontends
+# Basic example
 
 Proof of concept exploring the usage of microfrontends for Nintex Promapp.
 
