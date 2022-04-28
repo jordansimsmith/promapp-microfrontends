@@ -28,3 +28,7 @@ Proof of concept exploring the usage of microfrontends for Nintex Promapp with d
 
 - CSS scoping (shouldn't be too bad, just use css modules or css-in-js)
 - Unmounting css on microfrontend unmount (add identifiers to style tags, delete from the document on unmount?)
+
+## Screenshots
+
+![home](/dynamic-registration-example/docs/home.png)
